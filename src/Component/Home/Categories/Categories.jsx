@@ -7,10 +7,15 @@ import slide2 from "../../../assets/home/slide2.jpg";
 import slide3 from "../../../assets/home/slide3.jpg";
 import slide4 from "../../../assets/home/slide4.jpg";
 import slide5 from "../../../assets/home/slide5.jpg";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const Categories = () => {
   return (
-    <Swiper
+    <div>
+        <div>
+            <SectionTitle title={"From 11:00am to 10:00pm"} subtitle={"ORDER ONLINE"}></SectionTitle>
+        </div>
+        <Swiper
       slidesPerView={4}
       spaceBetween={30}
       centeredSlides={true}
@@ -18,7 +23,7 @@ const Categories = () => {
         clickable: true,
       }}
       modules={[Pagination]}
-      className="mySwiper my-24"
+      className="mySwiper my-10"
     >
       <SwiperSlide>
         <img src={slide1} alt="" className="" />
@@ -41,6 +46,7 @@ const Categories = () => {
         <h1 className="text-2xl text-center font-bold text-white  -mt-16">SALAD</h1>
       </SwiperSlide>
     </Swiper>
+    </div>
   );
 };
 
