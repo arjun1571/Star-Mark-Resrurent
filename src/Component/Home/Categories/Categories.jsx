@@ -27,19 +27,19 @@ const Categories = () => {
     >
       <SwiperSlide>
         <img src={slide1} alt="" className="" />
-        <h1 className="text-2xl text-center font-bold text-white  -mt-16">SALAD</h1>
+        <h1 className="text-2xl text-center font-bold text-white  -mt-24">SALAD</h1>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide2} alt="" />
-        <h1 className="text-2xl text-center font-bold text-white  -mt-16">PIZZA</h1>
+        <h1 className="text-2xl text-center font-bold text-white  -mt-24">PIZZA</h1>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide3} alt="" />
-        <h1 className="text-2xl text-center font-bold text-white  -mt-16">SUPES</h1>
+        <h1 className="text-2xl text-center font-bold text-white  -mt-24">SUPES</h1>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide4} alt="" />
-        <h1 className="text-2xl text-center font-bold text-white  -mt-16">DESSERTS</h1>
+        <h1 className="text-2xl text-center font-bold text-white  -mt-24">DESSERTS</h1>
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide5} alt="" />
