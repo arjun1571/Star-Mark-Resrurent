@@ -1,4 +1,5 @@
 import BoosBanner from "../BoosBanner/BoosBanner";
+import OurMenu from "../OurMenu/OurMenu";
 import PapularItem from "../PapularItem/PapularItem";
 import Recomendas from "../Recomendas/Recomendas";
 import Banner from "./Banner/Banner";
@@ -13,6 +14,7 @@ const Home = () => {
             <BoosBanner></BoosBanner>
             <PapularItem></PapularItem>
             <Recomendas></Recomendas>
+            <OurMenu></OurMenu>
         </div>
     );
 };
