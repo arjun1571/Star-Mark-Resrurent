@@ -4,8 +4,8 @@ import "./OurMenu.css"
 
 const OurMenu = () => {
     return (
-        <div className="background py-10 mb-10">
-            <div className="text-white">
+        <div className="background bg-fixed py-10 mb-10">
+            <div className="text-white ">
                 <SectionTitle title={"Cheak it Out"} subtitle={"from our menu"}></SectionTitle>
             </div>
             <div  className="md:flex lg:p-32 md-5 justify-center items-center p-2  ">
