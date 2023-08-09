@@ -1,6 +1,6 @@
 import { Parallax } from 'react-parallax';
 
-const MenuCover = ({img,title}) => {
+const MenuCover = ({img,title,des}) => {
   return (
     <Parallax
     blur={{ min: -50, max: 50 }}
@@ -17,7 +17,7 @@ const MenuCover = ({img,title}) => {
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold uppercase">{title}</h1>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. 
+            {des} 
           </p>
           
         </div>

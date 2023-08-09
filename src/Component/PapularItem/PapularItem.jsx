@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
+
 import SectionTitle from "../SectionTitle/SectionTitle";
 import MenuItem from "../MenuItem/MenuItem";
+import UseHooks from "../../Hooks/UseHooks";
 
 
 const PapularItem = () => {
-    const [menu,setMenu]=useState([])
-    useEffect(()=>{
-        fetch("menu.json")
-        .then(res=>res.json())
-        .then(data=>{
-            const filterItem = data.filter(item => item.category === 'popular')
-            setMenu(filterItem)
-        })
-    },[])
+    const [menu]=UseHooks()
+    const papular = menu.filter(item => item.category === "popular")
+    
     return (
         <div>
             <div>
@@ -20,7 +15,7 @@ const PapularItem = () => {
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 mt-10 mb-4">
                 {
-                    menu.map(item=> <MenuItem key={item._id} item={item}></MenuItem>)
+                    papular.map(item=> <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
             <button className="btn mb-10 flex  mx-auto btn-outline border-0 border-b-2  uppercase"> View full menue </button>
