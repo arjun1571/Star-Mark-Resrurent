@@ -23,6 +23,9 @@ const PapularItem = () => {
                     menu.map(item=> <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
+            <div className="">
+                <h1 className="bg-black text-white text-center p-10 text-xl md:text-4xl mb-10">Call Us: +8801824751931</h1>
+            </div>
             
         </div>
     );
