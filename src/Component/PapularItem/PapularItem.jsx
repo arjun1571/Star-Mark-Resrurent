@@ -18,12 +18,13 @@ const PapularItem = () => {
             <div>
                 <SectionTitle title={"Cheak it out"} subtitle={"FROM OUR MENU"}></SectionTitle>
             </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 my-10">
+            <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 mt-10 mb-4">
                 {
                     menu.map(item=> <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
-            <div className="">
+            <button className="btn mb-10 flex  mx-auto btn-outline border-0 border-b-2  uppercase"> View full menue </button>
+            <div className=" ">
                 <h1 className="bg-black text-white text-center p-10 text-xl md:text-4xl mb-10">Call Us: +8801824751931</h1>
             </div>
             
