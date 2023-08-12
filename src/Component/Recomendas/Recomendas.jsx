@@ -12,13 +12,13 @@ const Recomendas = () => {
             img: img1
         },
         {
-            id:1,
+            id:2,
             name:"Caeser Salad",
             des:"Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.",
             img: img1
         },
         {
-            id:1,
+            id:3,
             name:"Caeser Salad",
             des:"Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.",
             img: img1
