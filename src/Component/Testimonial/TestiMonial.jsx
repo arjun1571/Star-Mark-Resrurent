@@ -11,7 +11,7 @@ import img from "../../assets/home/quote-left 1.png"
 const TestiMonial = () => {
   const [datas, setDatas] = useState([]);
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
       .then((data) => setDatas(data));
   }, []);
