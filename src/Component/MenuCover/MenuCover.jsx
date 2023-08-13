@@ -19,7 +19,6 @@ const MenuCover = ({img,title,des}) => {
           <p className="mb-5">
             {des} 
           </p>
-          
         </div>
       </div>
     </div>

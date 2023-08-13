@@ -8,10 +8,12 @@ import img5 from "../../assets/menu/soup-bg.jpg"
 import UseHooks from "../../Hooks/UseHooks";
 import MenuItem from "../MenuItem/MenuItem";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
 
 
 const Menu = () => {
     const [menu]=UseHooks()
+    console.log(menu);
     const offeredItem = menu.filter(item => item.category === 'offered')
     const supeItem = menu.filter(item => item.category === 'soup')
     const dessertItem = menu.filter(item => item.category === 'salad')
@@ -30,6 +32,9 @@ const Menu = () => {
             offeredItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
         }
       </div>
+      <Link to={'/order'}>
+      <button className="btn flex mx-auto btn-outline border-0 border-b-2  my-3 uppercase ">Read More </button>
+      </Link>
       {/* supe  */}
       <MenuCover img={img5} title="Supe" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." ></MenuCover>
       <SectionTitle title={"Don't miss"} subtitle={"SOUP"}></SectionTitle>
@@ -38,6 +43,9 @@ const Menu = () => {
             supeItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
         }
       </div>
+      <Link to={'/order'}>
+      <button className="btn flex mx-auto btn-outline border-0 border-b-2  my-3 uppercase ">Read More </button>
+      </Link>
       {/* DESSERTS  */}
       <MenuCover img={img3} title="DESSERTS" des='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' ></MenuCover>
       <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 mt-10 mb-4">
@@ -45,6 +53,9 @@ const Menu = () => {
             dessertItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
         }
       </div>
+      <Link to={'/order'}>
+      <button className="btn flex mx-auto btn-outline border-0 border-b-2  my-3 uppercase ">Read More </button>
+      </Link>
      {/* SALADS  */}
       <MenuCover img={img4} title="SALADS" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." ></MenuCover>
       <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 mt-10 mb-4">
@@ -52,6 +63,9 @@ const Menu = () => {
             saladItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
         }
       </div>
+      <Link to={'/order'}>
+      <button className="btn flex mx-auto btn-outline border-0 border-b-2  my-3 uppercase ">Read More </button>
+      </Link>
      {/* anothe  */}
       <MenuCover img={img} title="drinks" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." ></MenuCover>
       <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 mt-10 mb-4">
@@ -59,13 +73,20 @@ const Menu = () => {
             drinksItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
         }
       </div>
+      <Link to={'/order'}>
+      <button className="btn flex mx-auto btn-outline border-0 border-b-2  my-3 uppercase ">Read More </button>
+      </Link>
        {/* pizza  */}
       <MenuCover img={img2} title="PIZZA" des="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." ></MenuCover>
       <div className="grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-5 mt-10 mb-4">
         {
             pizzaItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
         }
+        
       </div>
+      <Link to={`/order`}>
+      <button className="btn flex mx-auto btn-outline border-0 border-b-2  my-3 uppercase ">Read More </button>
+      </Link>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const FoodCart = ({item}) => {
     <p className="justify-center">{recipe}</p>
     
     <div className="card-actions justify-center">
-      <button className="btn btn-primary">Add to Cart</button>
+      <button className="btn  border-0 border-b-2 border-orange-400 uppercase btn-outline btn-defult">Add to Cart</button>
     </div>
   </div>
 </div>
