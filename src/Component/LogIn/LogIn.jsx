@@ -1,14 +1,19 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import img from "../../assets/others/authentication2.png"
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const LogIn = () => {
+  const navigate = useNavigate()
+  const location=useLocation()
+  const from = location.state?.from?.pathname || "/";
+
+
 
     const [desable,setDesable]=useState(true)
 
-    const capchaRef=useRef(null)
 
     const {loginUser}=useContext(AuthContext)
 
@@ -18,12 +23,11 @@ const LogIn = () => {
     },[])
 
 
-    const handleCaptcha =()=>{
-        const user_captcha_value = capchaRef.current.value;
+    const handleCaptcha =(e)=>{
+        const user_captcha_value = e.target.value;
         if( validateCaptcha(user_captcha_value)){
                 setDesable(false)
         }else{
-            alert("captcha is wrong")
             setDesable(true)
         }
 
@@ -38,6 +42,16 @@ const LogIn = () => {
         .then(result=>{
             const user= result.user;
             console.log(user);
+            Swal.fire({
+              title: 'Log In successfull',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            })
+            navigate(from, { replace: true });
             form.reset()
         })
         .catch(err=>{
@@ -86,13 +100,12 @@ const LogIn = () => {
               <LoadCanvasTemplate />
               </label>
               <input
-              ref={capchaRef}
+              onBlur={handleCaptcha}
                 type="text"
                 name="captcha"
                 placeholder="type captcha"
                 className="input input-bordered"
               />
-              <button className='btn btn-outline btn-xs mt-2'  onClick={handleCaptcha}>Validate</button>
             </div>
             <div className="form-control mt-6">
               <input className="btn btn-primary" disabled={desable} type="submit" value="LOG IN" />
