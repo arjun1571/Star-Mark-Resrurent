@@ -1,11 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
+import img from "../../assets/others/authentication2.png"
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const LogIn = () => {
 
     const [desable,setDesable]=useState(true)
 
     const capchaRef=useRef(null)
+
+    const {loginUser}=useContext(AuthContext)
 
     useEffect(()=>{
         
@@ -29,20 +34,25 @@ const LogIn = () => {
         const email = form.email.value;
         const pass = form.password.value;
         console.log(email, pass);
+        loginUser(email,pass)
+        .then(result=>{
+            const user= result.user;
+            console.log(user);
+            form.reset()
+        })
+        .catch(err=>{
+            console.log(err);
+        })
 
     }
    return (
-    <div className="hero min-h-screen  bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:w-1/2 lg:text-left mt-10 ">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+    <div className="hero min-h-screen bg-base-300">
+      <div className="hero-content md:flex-row-reverse flex-col-reverse">
+        <div className="text-center lg:w-7/12 lg:text-left md:mt-20 mt-10 ">
+        <img className='w-full lg:ml-20' src={img} alt="" />
         </div>
-        <div className="card flex-shrink-0 lg:w-1/2 max-w-sm shadow-2xl bg-base-100">
+        <div className="card  lg:w-5/12  shadow-xl bg-base-100 mt-20 md:mt-5">
+        <h1 className="md:text-5xl  text-3xl font-bold text-center mt-5 ">Login now!</h1>
           <form className="card-body" onSubmit={handleClick}>
             <div className="form-control">
               <label className="label">
@@ -87,7 +97,15 @@ const LogIn = () => {
             <div className="form-control mt-6">
               <input className="btn btn-primary" disabled={desable} type="submit" value="LOG IN" />
             </div>
+          
           </form>
+
+          <label className="label flex mx-auto mb-5">
+                <h1  className="label-text-alt ">
+                  Are you new? create account <span className='link link-hover text-yellow-500 font-bold'><Link to={"/signup"}> Sign Up</Link></span>
+                </h1>
+              </label>
+          
         </div>
       </div>
     </div>
