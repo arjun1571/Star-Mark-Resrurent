@@ -79,8 +79,8 @@ const NavBar = () => {
         <div className="navbar-end">
           
            {
-            user?.email &&
-            <h1>{user.email}</h1>
+            user?.displayName &&
+            <h1>{user.displayName}</h1>
            }
           
           <a className="btn" >LogOut</a>

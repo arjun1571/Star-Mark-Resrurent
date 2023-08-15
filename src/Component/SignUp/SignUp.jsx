@@ -1,25 +1,47 @@
 import { useContext } from "react";
 import img from "../../assets/others/authentication2.png";
 import { AuthContext } from "../../provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const navigate = useNavigate()
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser,updateUser,logOut } = useContext(AuthContext);
 
   const onSubmit = (data) => {
+    console.log(data);
     
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        updateUser(data.name,data.photoUrl)
+        .then(()=>{
+            console.log("user profile update");
+            reset()
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            logOut()
+            .then(()=>{
+              navigate("/login")
+            })
+
+        })
+        .catch(err => console.log(err))
       })
       .catch((err) => {
         console.log(err);
@@ -45,6 +67,18 @@ const SignUp = () => {
                 type="name"
                 placeholder="name"
                 name="name"
+                className="input input-bordered"
+              />
+              {errors.name && <span className="text-red-600">Name is required</span>}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+              {...register("PhotoUrl", { required: true })}
+                type="text"
+                placeholder="PhotoUrl"
                 className="input input-bordered"
               />
               {errors.name && <span className="text-red-600">Name is required</span>}
