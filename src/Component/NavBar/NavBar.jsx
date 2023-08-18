@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { FaBeer } from 'react-icons/fa';
 
 const NavBar = () => {
-  const {user,logOut}=useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
 
-  const handleLogOut =()=>{
-    logOut()
-  }
+  const handleLogOut = () => {
+    logOut();
+  };
   const navItem = (
     <>
       <li>
@@ -22,24 +23,35 @@ const NavBar = () => {
       <li>
         <Link to={"/secret"}>secret</Link>
       </li>
+      <li>
+        <Link to={"/"}>
+          <button className="flex items-center">
+           <FaBeer />
+            <div className="badge badge-secondary mx-1">+0</div>
+          </button>
+        </Link>
+      </li>
 
-      {
-        user ? <>
-              <li>
-              <button className=" " onClick={handleLogOut}>log Out</button>
-      </li>
-        
-        </> : <>
-        <li>
-        <Link to={"/login"}>LogIn</Link>
-      </li>
-      </>
-      }
+      {user ? (
+        <>
+          <li>
+            <button className=" " onClick={handleLogOut}>
+              log Out
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to={"/login"}>LogIn</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
     <>
-      <div className="navbar fixed z-10  text-white max-w-screen-xl bg-black bg-opacity-20">
+      <div className="navbar fixed z-10  md:text-white max-w-screen-xl bg-black bg-opacity-20">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -62,28 +74,18 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-                {
-                    navItem
-                }
+              {navItem}
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-2xl">STAR-MARK</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {
-                navItem
-            }
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navItem}</ul>
         </div>
         <div className="navbar-end">
-          
-           {
-            user?.displayName &&
-            <h1>{user.displayName}</h1>
-           }
-          
-          <a className="btn" >LogOut</a>
+          {user?.displayName && <h1>{user.displayName}</h1>}
+
+          <a className="btn">LogOut</a>
         </div>
       </div>
     </>
