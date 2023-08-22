@@ -21,12 +21,10 @@ const SocileLogin = () => {
               },
               body: JSON.stringify(saveUser),
             })
-              .then((res) => res.json())
-              .then(() => {
-                navigate('/home');
-               
-                
-              });
+            .then((res) => res.json())
+            .then(() => {
+              return  navigate('/home');   
+            });
             
         })
 
