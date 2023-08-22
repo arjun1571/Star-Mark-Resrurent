@@ -4,7 +4,9 @@ import {
   FaCalendar,
   FaCartPlus,
   FaHome,
+  FaPrescriptionBottleAlt,
   FaRedRiver,
+  FaUsers,
   FaWallet,
 } from "react-icons/fa";
 import { BiMenu } from "react-icons/bi";
@@ -12,6 +14,7 @@ import useCart from "../Hooks/useCart";
 
 const Dashbord = () => {
     const [cart]=useCart()
+    const isAdmin = true;
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -29,7 +32,31 @@ const Dashbord = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-[#D1A054] text-base-content">
           {/* Sidebar content here */}
+          {
+            isAdmin ? <>
+            <li>
+            <NavLink to={"user-home"}>
+              <FaHome /> Admin Home
+            </NavLink>
+          </li>
           <li>
+            <NavLink to={"reservation"}>
+              <FaPrescriptionBottleAlt /> Add Items
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"history"}>
+              <FaWallet /> Manage Items
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"alluser"}>
+              <FaUsers /> All User
+            </NavLink>
+          </li>
+            </>:
+            <>
+            <li>
             <NavLink to={"user-home"}>
               <FaHome /> User Home
             </NavLink>
@@ -59,6 +86,8 @@ const Dashbord = () => {
               <FaBook /> my booking
             </NavLink>
           </li>
+            </>
+          }
           <div className="divider"></div>
           <li>
             <NavLink to={"/"}>

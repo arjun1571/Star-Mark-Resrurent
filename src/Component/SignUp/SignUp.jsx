@@ -4,6 +4,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import SocileLogin from "../SocileLogin/SocileLogin";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -146,7 +147,7 @@ const SignUp = () => {
                 </span>
               )}
             </div>
-            <div className="form-control mt-6">
+            <div className="form-control mt-2">
               <input
                 className="btn btn-primary"
                 type="submit"
@@ -154,7 +155,7 @@ const SignUp = () => {
               />
             </div>
           </form>
-          <label className="label flex mx-auto p-5">
+          <label className="label flex mx-auto">
             <h1 className="label-text-alt  ">
               Already have a account ? please{" "}
               <span className="link link-hover text-yellow-500 font-bold">
@@ -162,6 +163,9 @@ const SignUp = () => {
               </span>
             </h1>
           </label>
+          <div>
+            <SocileLogin></SocileLogin>
+          </div>
         </div>
       </div>
     </div>

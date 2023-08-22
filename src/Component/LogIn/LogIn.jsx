@@ -4,6 +4,7 @@ import img from "../../assets/others/authentication2.png"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2'
+import SocileLogin from '../SocileLogin/SocileLogin';
 
 const LogIn = () => {
   const navigate = useNavigate()
@@ -64,7 +65,7 @@ const LogIn = () => {
         <img className='w-full lg:ml-20' src={img} alt="" />
         </div>
         <div className="card  lg:w-5/12  shadow-xl bg-base-100 mt-20 md:mt-5">
-        <h1 className="md:text-5xl  text-3xl font-bold text-center mt-5 ">Login now!</h1>
+        <h1 className="md:text-5xl  text-3xl font-bold text-center mt-2 ">Login now!</h1>
           <form className="card-body" onSubmit={handleClick}>
             <div className="form-control">
               <label className="label">
@@ -105,17 +106,20 @@ const LogIn = () => {
                 className="input input-bordered"
               />
             </div>
-            <div className="form-control mt-6">
+            <div className="form-control mt-2">
               <input className="btn btn-primary" disabled={desable} type="submit" value="LOG IN" />
             </div>
           
           </form>
 
-          <label className="label flex mx-auto mb-5">
+              <label className="label flex mx-auto">
                 <h1  className="label-text-alt ">
                   Are you new? create account <span className='link link-hover text-yellow-500 font-bold'><Link to={"/signup"}> Sign Up</Link></span>
                 </h1>
               </label>
+              <div>
+                <SocileLogin></SocileLogin>
+              </div>
           
         </div>
       </div>
