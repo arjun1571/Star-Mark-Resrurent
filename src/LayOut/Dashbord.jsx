@@ -11,10 +11,46 @@ import {
 } from "react-icons/fa";
 import { BiMenu } from "react-icons/bi";
 import useCart from "../Hooks/useCart";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { useState } from "react";
 
 const Dashbord = () => {
+  const {user}=useContext(AuthContext)
     const [cart]=useCart()
-    const isAdmin = true;
+    
+    const [dmin,setAdmin]=useState()
+    let isAdmin
+    
+    if(dmin?.admin){
+       isAdmin = true;
+    }
+    else{
+      isAdmin=false
+    }
+
+
+  console.log(dmin);
+    // sjfjsdoifjoisdjfio 
+
+    const token = localStorage.getItem('access-token')
+    useEffect(()=>{
+      fetch(`http://localhost:5000/users/admin/${user.email}`,{
+        headers:{
+          authorization: `bearer ${token}`
+        }
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        setAdmin(data)
+      })
+    
+      
+    },[])
+
+
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -33,7 +69,7 @@ const Dashbord = () => {
         <ul className="menu p-4 w-80 h-full bg-[#D1A054] text-base-content">
           {/* Sidebar content here */}
           {
-            isAdmin ? <>
+          isAdmin ? <>
             <li>
             <NavLink to={"user-home"}>
               <FaHome /> Admin Home
