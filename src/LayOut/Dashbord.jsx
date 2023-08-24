@@ -31,7 +31,6 @@ const Dashbord = () => {
     }
 
 
-  console.log(dmin);
     // sjfjsdoifjoisdjfio 
 
     const token = localStorage.getItem('access-token')

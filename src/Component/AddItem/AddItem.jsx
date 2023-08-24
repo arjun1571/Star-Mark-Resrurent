@@ -1,6 +1,24 @@
 import { Helmet } from "react-helmet";
+import { useForm } from 'react-hook-form';
+
+const image_hosting_token= import.meta.env.VITE_Image_Key
 
 const AddItem = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const img_hosting_url =`https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_token}`
+    const onSubmit = data => {
+        const formData = new FormData()
+        formData.append('image', data.image[0])
+        fetch(img_hosting_url,{
+            method:'POST',
+            body:formData
+        })
+        .then(res=>res.json())
+        .then(imgResponse=>{
+            console.log(imgResponse);
+        })
+    };
+    console.log(errors);
   return (
     <div>
       <Helmet>
@@ -13,7 +31,7 @@ const AddItem = () => {
         <div className="divider w-60 mx-auto"></div>
       </div>
       <div>
-        <form className="lg:mx-20 md:mx-10 mx-2 md:px-5 md:py-10  bg-base-200">
+        <form onSubmit={handleSubmit(onSubmit)} className="lg:mx-20 md:mx-10 mx-2 md:px-5 md:py-10   bg-base-200">
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Recipe name*</span>
@@ -22,6 +40,7 @@ const AddItem = () => {
               type="text"
               placeholder="Recipe name"
               className="input input-bordered w-full max-w-xs"
+              {...register("name", {required: true, maxLength: 120})}
             />
           </div>
           <div className="md:flex">
@@ -29,8 +48,8 @@ const AddItem = () => {
               <label className="label">
                 <span className="label-text">Category*</span>
               </label>
-              <select className="select select-bordered">
-                <option disabled selected>
+              <select defaultValue={"Pic One"} {...register("category", { required: true })} className="select select-bordered">
+                <option disabled >
                   Pick one
                 </option>
                 <option>Star Wars</option>
@@ -48,6 +67,7 @@ const AddItem = () => {
                 type="text"
                 placeholder="Price"
                 className="input input-bordered w-full max-w-xs"
+                {...register("price", { required: true })}
               />
             </div>
           </div>
@@ -56,6 +76,7 @@ const AddItem = () => {
               <span className="label-text">Recipe Detais*</span>
             </label>
             <textarea
+            {...register("recipe", { required: true })}
               className="textarea textarea-bordered h-24"
               placeholder="Recipe Details"
             ></textarea>
@@ -64,6 +85,7 @@ const AddItem = () => {
             <input
               type="file"
               className="file-input file-input-bordered w-full max-w-xs"
+              {...register("image", { required: true })}
             />
           </div>
           <input className="btn mt-2 w-44 btn-primary" type="submit" value={"Add Item"} />
