@@ -10,6 +10,7 @@ import Secret from "../Component/secret/secret";
 import Dashbord from "../LayOut/Dashbord";
 import MyCart from "../Component/MyCart/MyCart";
 import AllUser from "../LayOut/AllUser/AllUser";
+import AddItem from "../Component/AddItem/AddItem";
 
 
 export const router = createBrowserRouter([
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
            {
             path:"alluser",
             element:<AllUser></AllUser>
+           },
+           {
+            path:"additem",
+            element:<AddItem></AddItem>
            }
         ]
     }

@@ -76,7 +76,7 @@ const Dashbord = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"reservation"}>
+            <NavLink to={"additem"}>
               <FaPrescriptionBottleAlt /> Add Items
             </NavLink>
           </li>
