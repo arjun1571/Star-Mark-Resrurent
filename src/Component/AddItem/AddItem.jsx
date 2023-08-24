@@ -1,11 +1,12 @@
 import { Helmet } from "react-helmet";
 import { useForm } from 'react-hook-form';
+import Swal from "sweetalert2";
 
 const image_hosting_token= import.meta.env.VITE_Image_Key
 
 const AddItem = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const img_hosting_url =`https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_token}`
+    const img_hosting_url =`https://api.imgbb.com/1/upload?key=${image_hosting_token}`
     const onSubmit = data => {
         const formData = new FormData()
         formData.append('image', data.image[0])
@@ -15,6 +16,33 @@ const AddItem = () => {
         })
         .then(res=>res.json())
         .then(imgResponse=>{
+            if(imgResponse.success){
+                const imgURL = imgResponse.data.display_url;
+                console.log(imgURL);
+                const {name,price,category,recipe}=data;
+                const newItem = {name,price:parseFloat(price),category,recipe,image:imgURL}
+                console.log(newItem);
+                fetch("http://localhost:5000/menus",{
+                    method:"POST",
+                    headers:{
+                        "content-type":"application/json"
+                    },
+                    body: JSON.stringify(newItem)
+                })
+                .then(res=>res.json())
+        .then(data=>{
+          if(data.insertedId){
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Items added successful',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          
+        })
+            }
             console.log(imgResponse);
         })
     };
@@ -52,11 +80,11 @@ const AddItem = () => {
                 <option disabled >
                   Pick one
                 </option>
-                <option>Star Wars</option>
-                <option>Harry Potter</option>
-                <option>Lord of the Rings</option>
-                <option>Planet of the Apes</option>
-                <option>Star Trek</option>
+                <option>salad</option>
+                <option>pizza</option>
+                <option>soups</option>
+                <option>desserts</option>
+                <option>drinks</option>
               </select>
             </div>
             <div className="form-control w-full max-w-xs">
