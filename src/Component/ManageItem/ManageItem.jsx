@@ -1,8 +1,59 @@
 import { Helmet } from "react-helmet";
 import UseHooks from "../../Hooks/UseHooks";
+import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ManageItem = () => {
-  const [menu] = UseHooks();
+  const [menu, ,refetch] = UseHooks();
+  const handleDelete =(item)=>{
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        //   Swal.fire(
+        //     'Deleted!',
+        //     'Your file has been deleted.',
+        //     'success'
+        //   )
+        fetch(`http://localhost:5000/menus/${item._id}`,{
+            method:"DELETE"
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.deletedCount>0){
+            
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        refetch()
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+            }
+        })
+
+        }
+      })
+
+  }
   return (
     <div>
       <Helmet>
@@ -44,22 +95,23 @@ const ManageItem = () => {
                         />
                       </div>
                     </div>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
+
                   </div>
                 </td>
                 <td>
-                  Zemlak, Daniel and Leannon
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
+                 {item.name}
                 </td>
-                <td>Purple</td>
+                <td>{item.price}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button className="btn btn-ghost btn-xs">{item.price}</button>
+                </th>
+                <th>
+                <button
+                    onClick={() => handleDelete(item)}
+                    className="btn btn-ghost btn-xl text-white bg-red-800"
+                  >
+                    <FaTrashAlt></FaTrashAlt>
+                  </button>
                 </th>
               </tr>
             ))}
