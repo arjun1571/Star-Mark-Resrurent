@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import useCart from "../../Hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import {  NavLink } from "react-router-dom";
 
 const MyCart = () => {
   const [cart,refetch] = useCart();
@@ -52,7 +53,8 @@ const MyCart = () => {
           Total orders: {cart.length}
         </h1>
         <h1 className="md:text-2xl text-xl font-bold">Total Price: ${total}</h1>
-        <button className="btn btn-warning btn-sm">PAY</button>
+        <NavLink to={"pay"}>
+        <button   className="btn btn-warning btn-sm">PAY</button></NavLink>
       </div>
       <div>
         <div className="overflow-x-auto lg:mx-20">

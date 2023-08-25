@@ -12,6 +12,7 @@ import MyCart from "../Component/MyCart/MyCart";
 import AllUser from "../LayOut/AllUser/AllUser";
 import AddItem from "../Component/AddItem/AddItem";
 import ManageItem from "../Component/ManageItem/ManageItem";
+import Pay from "../Component/Payment/Pay";
 
 
 export const router = createBrowserRouter([
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
            {
             path:"manageitem",
             element:<ManageItem></ManageItem>
+           },
+           {
+            path:"my-cart/pay",
+            element:<Pay></Pay>
            }
         ]
     }
