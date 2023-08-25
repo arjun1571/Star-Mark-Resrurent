@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 const image_hosting_token= import.meta.env.VITE_Image_Key
 
 const AddItem = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors },reset } = useForm();
     const img_hosting_url =`https://api.imgbb.com/1/upload?key=${image_hosting_token}`
     const onSubmit = data => {
         const formData = new FormData()
@@ -32,6 +32,7 @@ const AddItem = () => {
                 .then(res=>res.json())
         .then(data=>{
           if(data.insertedId){
+            reset();
             Swal.fire({
               position: 'top-center',
               icon: 'success',
@@ -82,8 +83,8 @@ const AddItem = () => {
                 </option>
                 <option>salad</option>
                 <option>pizza</option>
-                <option>soups</option>
-                <option>desserts</option>
+                <option>soup</option>
+                <option>desset</option>
                 <option>drinks</option>
               </select>
             </div>

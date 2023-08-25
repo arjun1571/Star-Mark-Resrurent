@@ -80,7 +80,7 @@ const Dashbord = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"history"}>
+            <NavLink to={"manageitem"}>
               <FaWallet /> Manage Items
             </NavLink>
           </li>
