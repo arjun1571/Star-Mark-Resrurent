@@ -13,6 +13,8 @@ import AllUser from "../LayOut/AllUser/AllUser";
 import AddItem from "../Component/AddItem/AddItem";
 import ManageItem from "../Component/ManageItem/ManageItem";
 import Pay from "../Component/Payment/Pay";
+import UserHome from "../Component/UserHome/UserHome";
+import AdminHome from "../Component/AdminHome/AdminHome";
 
 
 export const router = createBrowserRouter([
@@ -69,6 +71,14 @@ export const router = createBrowserRouter([
            {
             path:"my-cart/pay",
             element:<Pay></Pay>
+           },
+           {
+            path:"user-home",
+            element:<UserHome></UserHome>
+           },
+           {
+            path:"admin-home",
+            element:<AdminHome></AdminHome>
            }
         ]
     }

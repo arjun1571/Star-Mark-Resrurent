@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FaShoppingCart } from 'react-icons/fa';
@@ -7,6 +7,31 @@ import useCart from "../../Hooks/useCart";
 const NavBar = () => {
   const [cart] = useCart()
   const { user, logOut } = useContext(AuthContext);
+
+  const [dmin,setAdmin]=useState()
+  let isAdmin
+  
+  if(dmin?.admin){
+     isAdmin = true;
+  }
+  else{
+    isAdmin=false;
+  }
+
+  const token = localStorage.getItem('access-token')
+  useEffect(()=>{
+    fetch(`http://localhost:5000/users/admin/${user?.email}`,{
+      headers:{
+        authorization: `bearer ${token}`
+      }
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      setAdmin(data)
+    })
+  
+    
+  },[token, user?.email])
 
   const handleLogOut = () => {
     logOut();
@@ -33,6 +58,15 @@ const NavBar = () => {
           </button>
         </Link>
       </li>
+      {
+        isAdmin ? 
+            <li>
+              <Link to={"dashbord/admin-home"}>DashBoard</Link>
+            </li> : 
+            <li>
+              <Link to={"dashbord/user-home"}>DasshBord</Link>
+            </li>
+      }
 
       {user ? (
         <>
